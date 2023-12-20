@@ -1,4 +1,4 @@
-const {router, handleErrors, generateAccessToken, asyncHandler, User} = require("../middleware/exports");
+const {router, handleErrors, generateAccessToken, asyncHandler, User, bcrypt} = require("../middleware/exports");
 
 
 
@@ -9,8 +9,8 @@ router.post('/login', handleErrors(asyncHandler(async (req, res) => {
     if (!user) {
         return res.status(400).json({ message: "User does not exist" });
     }
-    //const hashedPassword = await bcrypt.hash(password, 10);;
-    const isMatch = await user.password == password;
+    const userPWD = await user.password;
+    const isMatch = bcrypt.compareSync(password, userPWD);
 
     if (!isMatch) {
         return res.status(400).json({ message: "Invalid password" });

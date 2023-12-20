@@ -14,9 +14,11 @@ app.use(bodyParser.json());
 // Include API routes
 const login = require("./routes/login.route.js");
 const root = require("./routes/root.route.js");
+const register = require("./routes/register.route.js");
 
 app.use("/", root);
 app.use('/login', login);
+app.use('/register', register);
 
 
 
