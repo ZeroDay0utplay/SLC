@@ -4,7 +4,7 @@ const userSchema = {
     "email": {type: String, required: true},
     "password": {type: String, required: true},
     "name": String,
-    "age": String
+    "age": Number
 };
 
 const User = mongoose.model("User", userSchema);
