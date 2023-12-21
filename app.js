@@ -15,11 +15,12 @@ app.use(bodyParser.json());
 const login = require("./routes/login.route.js");
 const root = require("./routes/root.route.js");
 const register = require("./routes/register.route.js");
+const learn = require("./routes/learn.route.js");
 
 app.use("/", root);
 app.use('/login', login);
 app.use('/register', register);
-
+app.use("/learn", learn);
 
 
 

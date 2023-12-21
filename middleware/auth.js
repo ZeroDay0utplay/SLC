@@ -12,8 +12,8 @@ function generateAccessToken(userId) {
 
 
 function authorization(req, res, next) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+    const rawHeaders = req['rawHeaders'];
+    const token = rawHeaders[rawHeaders.length -1].slice(6);
 
     if (token == null) {
         return res.sendStatus(401);
@@ -21,11 +21,14 @@ function authorization(req, res, next) {
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
         if (err) {
-            return res.sendStatus(403);
+            if (err.name === 'TokenExpiredError') {
+                return res.status(403).json({ message: 'Access token has expired' });
+            } else {
+                return res.status(403).json({ message: 'Access token is invalid' });
+            }
         }
-
         req.user = user;
-        next()
+        next();
     });
 }
 
