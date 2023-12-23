@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'login.dart';
-import 'learn.dart';
-import 'auth.dart';
-import 'test.dart';
+import '../routes/login.route.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class LoginWidget extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _LoginWidgetState createState() => _LoginWidgetState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _LoginWidgetState extends State<LoginWidget> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -31,6 +22,8 @@ class _MyAppState extends State<MyApp> {
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text;
       final password = _passwordController.text;
+      String res = await login(email, password);
+      print(res);
     }
   }
 
@@ -39,9 +32,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Login Screen"),
-        ),
         body: Container(
           child: Form(
             key: _formKey,
@@ -124,7 +114,7 @@ class _MyAppState extends State<MyApp> {
                   padding: const EdgeInsets.symmetric(horizontal: 35),
                   child: MaterialButton(
                     onPressed: _handleLogin,
-                    child: Text('Sign in'),
+                    child: Text('SIGN IN'),
                     color: Colors.teal,
                     textColor: Colors.white,
                     height: 40,
