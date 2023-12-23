@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'auth.dart';
 
 
-Future<Map<String, dynamic>> login(String? email, String? password) async {
+Future<String> login(String? email, String? password) async {
   var url = Uri.parse('http://192.168.1.3:3000/login');
   var headers = <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
@@ -18,6 +18,7 @@ Future<Map<String, dynamic>> login(String? email, String? password) async {
   Map<String, dynamic> jsonBody = jsonDecode(response.body);
   if (response.statusCode == 200){ // we could add test for existence of auth token
     saveAuthToken(jsonBody["auth_token"]);
+    return "/";
   }
-  return jsonBody;
+  return "/login";
 }

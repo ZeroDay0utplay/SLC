@@ -9,8 +9,9 @@ const topics = {
 }
 
 
-router.get("/test", (req, res)=>{
+router.post("/test", (req, res)=>{
     const topic = req.body.topic;
+    console.log(req.body);
     if(!topics[topic]) {
         return res.status(400).send('Invalid topic');
     }

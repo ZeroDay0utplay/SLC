@@ -13,7 +13,7 @@ router.post("/learn", authorization, (req, res)=>{
             res.set('Content-Type', 'application/octet-stream');
             res.set(`Content-Disposition', 'attachment; filename=${symbol}.mp3`);
             data = JSON.stringify(data.toString("base64"));
-            res.status(200).send(data);
+            res.status(200).json({data: data});
         }
     });
 })

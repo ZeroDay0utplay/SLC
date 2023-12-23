@@ -3,7 +3,6 @@ const {router, handleErrors, generateAccessToken, asyncHandler, User, bcrypt} = 
 
 
 router.post('/login', handleErrors(asyncHandler(async (req, res) => {
-    console.log(req.body);
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
 
