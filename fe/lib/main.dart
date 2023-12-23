@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'login.dart';
+import 'learn.dart';
+import 'auth.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,11 +26,15 @@ class _MyAppState extends State<MyApp> {
     passwordVisible = true;
   }
 
-  void _handleLogin() {
+  void _handleLogin() async{
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text;
       final password = _passwordController.text;
-      
+      //String responseBody = await learn('E', 'letters');
+      Map<String, dynamic> responseBody = await login(email, password);
+      String? token = await getAuthToken();
+      print(token);
+      //print(responseBody);
     }
   }
 

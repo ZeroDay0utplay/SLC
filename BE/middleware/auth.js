@@ -12,9 +12,9 @@ function generateAccessToken(userId) {
 
 
 function authorization(req, res, next) {
-    const rawHeaders = req['rawHeaders'];
-    const token = rawHeaders[rawHeaders.length -1].slice(6);
-
+    // const rawHeaders = req['rawHeaders'];
+    // const token = rawHeaders[rawHeaders.length -1].slice(6);
+    const token = req.token;
     if (token == null) {
         return res.sendStatus(401);
     }

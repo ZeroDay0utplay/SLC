@@ -6,9 +6,14 @@ jsonOBJ = {"topic": "letters"}
 
 
 res = requests.get(url, json=jsonOBJ)
-if res.status_code == 200: jsonData = res.json()
+Letter = res.json()["symbol"]
+answer = res.json()["answer"]
+
+print(f"Letter: {Letter}\nAnswer: {answer}")
+
+if res.status_code == 200: jsonData = res.json()['data']
 else : exit()
 decodedString = base64.b64decode(jsonData)
 
-with open("lett.mp3", "wb") as f:
+with open("Letter.mp3", "wb") as f:
     f.write(decodedString)

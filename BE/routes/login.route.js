@@ -3,6 +3,7 @@ const {router, handleErrors, generateAccessToken, asyncHandler, User, bcrypt} = 
 
 
 router.post('/login', handleErrors(asyncHandler(async (req, res) => {
+    console.log(req.body);
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
 
@@ -16,10 +17,8 @@ router.post('/login', handleErrors(asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "Invalid password" });
     }
     const token = generateAccessToken((user._id).toString());
-    //res.setHeader('Content-Type', 'application/json');
-    res.cookie('token', token, { httpOnly: true })
-       .status(200)
-       .json({ message: "Logged in successfully"});
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json({ auth_token: token, message: "Logged in successfully"});
 })));
 
 module.exports = router;

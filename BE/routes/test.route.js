@@ -9,7 +9,7 @@ const topics = {
 }
 
 
-router.get("/test", authorization, (req, res)=>{
+router.get("/test", (req, res)=>{
     const topic = req.body.topic;
     if(!topics[topic]) {
         return res.status(400).send('Invalid topic');
@@ -34,10 +34,6 @@ router.get("/test", authorization, (req, res)=>{
         }
     });
 })
-
-
-module.exports = router;
-
 
 
 module.exports = router;
