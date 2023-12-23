@@ -4,10 +4,10 @@ const validator = require("validator");
 
 router.post("/register", async (req, res)=>{
     const {email, password, name, age} = req.body;
-    if (!(validator.isEmail(email))) return res.status(400).json({"message": "Invalid email address"});
+    if (!(validator.isEmail(email))) return res.status(408).json({"message": "Invalid email address"});
     const userExists = await User.findOne({ email: email });
     if (userExists) {
-        return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+        return res.status(411).json({ errors: [{ msg: 'User already exists' }] });
     }
     // Create new user
     const salt = bcrypt.genSaltSync(10);

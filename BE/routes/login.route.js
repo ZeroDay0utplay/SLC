@@ -13,7 +13,7 @@ router.post('/login', handleErrors(asyncHandler(async (req, res) => {
     const isMatch = bcrypt.compareSync(password, userPWD);
 
     if (!isMatch) {
-        return res.status(400).json({ message: "Invalid password" });
+        return res.status(407).json({ message: "Invalid password" });
     }
     const token = generateAccessToken((user._id).toString());
     res.setHeader('Content-Type', 'application/json');

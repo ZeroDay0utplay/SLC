@@ -1,3 +1,4 @@
+import 'package:fe/pages/login_widget.dart';
 import 'package:flutter/material.dart';
 import '../routes/register.route.dart';
 
@@ -20,14 +21,45 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     passwordVisible = true;
   }
 
+  void goToLogin() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginWidget()),
+    );
+  }
+
+  void showErrorDialog(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: Text(errorMessage),
+          actions: [
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _handleRegister() async{
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text;
       final password = _passwordController.text;
       final name = _nameController.text;
       final age = _ageController.text;
-      String res = await register(email, password, name, age);
-      print(res);
+      int statusCode = await register(email, password, name, age);
+      switch (statusCode){
+        case 200: goToLogin();
+        case 408: showErrorDialog("Invalid email address");
+        case 411: showErrorDialog("User already exists");
+      }
     }
   }
 

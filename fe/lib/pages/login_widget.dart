@@ -1,3 +1,4 @@
+import 'package:fe/pages/hello.dart';
 import 'package:flutter/material.dart';
 import '../routes/login.route.dart';
 
@@ -18,12 +19,43 @@ class _LoginWidgetState extends State<LoginWidget> {
     passwordVisible = true;
   }
 
+  void goToHello() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HelloWidget()),
+    );
+  }
+
+  void showErrorDialog(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: Text(errorMessage),
+          actions: [
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _handleLogin() async{
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text;
       final password = _passwordController.text;
-      String res = await login(email, password);
-      print(res);
+      int statusCode = await login(email, password);
+      switch (statusCode){
+        case 200: goToHello();
+        case 400: showErrorDialog("User does not exist");
+        case 407: showErrorDialog("Wrong password");
+      }
     }
   }
 
