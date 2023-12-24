@@ -14,12 +14,14 @@ const root = require("./routes/root.route.js");
 const register = require("./routes/register.route.js");
 const learn = require("./routes/learn.route.js");
 const test = require("./routes/test.route.js");
+const save_test = require("./routes/save.test.route.js");
 
 app.use("/", root);
 app.use('/login', login);
 app.use('/register', register);
 app.use("/learn", learn);
-app.use("/test", test)
+app.use("/test", test);
+app.use("/save_test", save_test);
 
 
 app.listen(3000, () => {
