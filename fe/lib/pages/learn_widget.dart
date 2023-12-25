@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
-import 'learn_widget.dart';
 
-class HelloWidget extends StatefulWidget {
+class LearnWidget extends StatefulWidget {
   @override
-  _HelloWidgetState createState() => _HelloWidgetState();
+  _LearnWidgetState createState() => _LearnWidgetState();
 }
 
-class _HelloWidgetState extends State<HelloWidget> {
+class _LearnWidgetState extends State<LearnWidget> {
 
   @override
   void initState() {
     super.initState();
-  }
-
-  void goToLearn() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LearnWidget()),
-    );
   }
 
   @override
@@ -26,13 +18,13 @@ class _HelloWidgetState extends State<HelloWidget> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Home Page'),
+          title: Text('Learn Page'),
           backgroundColor: Colors.cyan,
         ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/home_bg.jpg'),
+              image: AssetImage('assets/images/learn_bg.jpg'),
               fit: BoxFit.cover,
             ),
           ),
@@ -41,25 +33,34 @@ class _HelloWidgetState extends State<HelloWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: goToLearn,
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange.withOpacity(0.9),
-                    padding: EdgeInsets.symmetric(horizontal: 90, vertical: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 55, vertical: 20),
                     textStyle: TextStyle(fontSize: 30, fontFamily: 'Poppins'),
                   ),
-                  child: Text('Learn', style: TextStyle(color: Colors.white)),
+                  child: Text('Colors', style: TextStyle(color: Colors.white)),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green.withOpacity(0.9),
-                    padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 70, vertical: 20),
                     textStyle: TextStyle(fontSize: 30, fontFamily: 'Poppins'),
                   ),
-                  child: Text('Test', style: TextStyle(color: Colors.white)),
+                  child: Text('1 2 3', style: TextStyle(color: Colors.white),),
                 ),
                 SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple.withOpacity(0.9),
+                    padding: EdgeInsets.symmetric(horizontal: 65, vertical: 20),
+                    textStyle: TextStyle(fontSize: 30, fontFamily: 'Poppins'),
+                  ),
+                  child: Text('A B C', style: TextStyle(color: Colors.white),),
+                ),
               ],
             ),
           ),
