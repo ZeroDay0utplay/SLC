@@ -59,6 +59,13 @@ class _LoginWidgetState extends State<LoginWidget> {
     }
   }
 
+  void onForgotPwd(){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HelloWidget()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -71,12 +78,28 @@ class _LoginWidgetState extends State<LoginWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'Login',
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.teal,
-                      fontWeight: FontWeight.bold
+                Padding(
+                  padding: EdgeInsets.only(bottom: 0, right: 20),
+                  child: Image.asset("assets/images/cat_login.png"),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 5),
+                  child: Text(
+                    "Smart Learning Cube",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'Goudy Old Style',
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: 50.0, right: 50.0, top: 10
+                  ),
+                  child: Text(
+                    "See your child's skills blossom with the assistance of our innovative toy",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15, color: Color(0xFF979191)),
                   ),
                 ),
 
@@ -141,16 +164,42 @@ class _LoginWidgetState extends State<LoginWidget> {
                     },
                   ),
                 ),
-                SizedBox(height: 30,),
+
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
-                  child: MaterialButton(
+                  padding: EdgeInsets.only(top: 10, left: 150, bottom: 0),
+                  child: InkWell(
+                    onTap: onForgotPwd,
+                    child: Text(
+                      'you forgot your password?',
+                      style: TextStyle(
+                        color: Color(0xFF000000),
+                        fontFamily: 'Goudy Old Style',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 30,),
+                Container(
+                  width: 266,
+                  child: ElevatedButton(
                     onPressed: _handleLogin,
-                    child: Text('SIGN IN'),
-                    color: Colors.teal,
-                    textColor: Colors.white,
-                    height: 40,
-                    minWidth: double.infinity,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                      padding:
+                      EdgeInsets.symmetric(horizontal: 65, vertical: 20),
+                      textStyle: TextStyle(fontSize: 20, fontFamily: 'Kavoon'),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20), // <-- Add this line
+                      ),
+                    ),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ],

@@ -69,22 +69,33 @@ class _RegisterWidgetState extends State<RegisterWidget> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Poppins'),
       home: Scaffold(
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Smart Learning Cube",
+                style: TextStyle(
+                  fontFamily: "Goudy Old Style",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25
+                ),
+              ), // Your app title
+              Image.asset(
+                'assets/images/cat_signup.png', // Replace with your image path
+                fit: BoxFit.contain,
+              ),
+            ],
+          ),
+          toolbarHeight: 150,
+        ),
         body: Container(
           child: Form(
             key: _formKey,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'Create an account',
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.teal,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-
                 SizedBox(height: 12),
 
                 Padding(
@@ -191,17 +202,65 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   ),
                 ),
 
-                SizedBox(height: 40,),
+                SizedBox(height: 12,),
 
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
-                  child: MaterialButton(
+                  padding: EdgeInsets.symmetric(horizontal: 35),
+                  child: TextFormField(
+                    obscureText: passwordVisible,
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                      fillColor: Colors.transparent,
+                      border: OutlineInputBorder(),
+                      hintText: "Confirm Password",
+                      labelText: "Confirm Password",
+                      //helperText:"Password must contain special character",
+                      //helperStyle:TextStyle(color:Colors.teal),
+                      prefixIcon: Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(passwordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(
+                                () {
+                              passwordVisible = !passwordVisible;
+                            },
+                          );
+                        },
+                      ),
+                      alignLabelWithHint: false,
+                      filled: true,
+                    ),
+                    keyboardType: TextInputType.visiblePassword,
+                    onChanged: (String value){
+
+                    },
+                    validator: (value){
+                      return value!.isEmpty ? 'Please enter password' : null;
+                    },
+                  ),
+                ),
+
+                SizedBox(height: 40,),
+
+                Container(
+                  width: 275,
+                  child: ElevatedButton(
                     onPressed: _handleRegister,
-                    child: Text('SIGN UP'),
-                    color: Colors.teal,
-                    textColor: Colors.white,
-                    height: 40,
-                    minWidth: double.infinity,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                      padding:
+                      EdgeInsets.symmetric(horizontal: 65, vertical: 20),
+                      textStyle: TextStyle(fontSize: 20, fontFamily: 'Kavoon'),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20), // <-- Add this line
+                      ),
+                    ),
+                    child: Text(
+                      'Sign up',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ],

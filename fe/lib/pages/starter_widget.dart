@@ -34,12 +34,15 @@ class _HomeWidgetState extends State<HomeWidget> {
         home: Scaffold(
           appBar: AppBar(
             title: Center(
-              child: Text(
-                "Smart Learning Cube",
-                style: TextStyle(
-                    fontSize: 25,
-                    fontFamily: 'Goudy Old Style',
-                    fontWeight: FontWeight.bold),
+              child: Padding(
+                padding: EdgeInsets.only(top: 30),
+                child: Text(
+                  "Smart Learning Cube",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontFamily: 'Goudy Old Style',
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),
@@ -69,6 +72,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                       padding:
                           EdgeInsets.symmetric(horizontal: 65, vertical: 20),
                       textStyle: TextStyle(fontSize: 25, fontFamily: 'Kavoon'),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20), // <-- Add this line
+                      ),
                     ),
                     child: Text(
                       'Get started',
@@ -88,6 +94,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                       padding:
                       EdgeInsets.symmetric(horizontal: 65, vertical: 20),
                       textStyle: TextStyle(fontSize: 25, fontFamily: 'Kavoon'),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20), // <-- Add this line
+                      ),
                     ),
                     child: Text(
                       'Login',
