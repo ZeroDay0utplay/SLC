@@ -3,7 +3,7 @@ const validator = require("validator");
 
 
 router.post("/register", async (req, res)=>{
-    const {email, password, name, age} = req.body;
+    const {email, password, fname, lname} = req.body;
     if (!(validator.isEmail(email))) return res.status(408).json({"message": "Invalid email address"});
     const userExists = await User.findOne({ email: email });
     if (userExists) {
@@ -16,8 +16,8 @@ router.post("/register", async (req, res)=>{
     const user = new User({
         email,
         password: hashedPassword,
-        name,
-        age
+        fname,
+        lname
     });
     await user.save();
     return res.status(200).json({"message": "User registered successfully"});
