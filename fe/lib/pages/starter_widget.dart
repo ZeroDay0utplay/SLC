@@ -8,7 +8,6 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-
   @override
   void initState() {
     super.initState();
@@ -31,56 +30,74 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(
-          child: Form(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: Center(
+              child: Text(
+                "Smart Learning Cube",
+                style: TextStyle(
+                    fontSize: 25,
+                    fontFamily: 'Goudy Old Style',
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          body: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Join us today',
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.teal,
-                      fontWeight: FontWeight.bold
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 50.0, right: 20),
+                  child: Image.asset("assets/images/cat_getStarted.png"),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: 50.0, right: 50.0, top: 50.0, bottom: 40.0),
+                  child: Text(
+                    "Track your child's progress effortlessly with our user-friendly app",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15, color: Color(0xFF979191)),
                   ),
                 ),
-
-                SizedBox(height: 30),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
-                  child: MaterialButton(
+                Container(
+                  width: 266,
+                  child: ElevatedButton(
                     onPressed: onGetStarted,
-                    child: Text('Get Started'),
-                    color: Colors.teal,
-                    textColor: Colors.white,
-                    height: 40,
-                    minWidth: double.infinity,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 65, vertical: 20),
+                      textStyle: TextStyle(fontSize: 25, fontFamily: 'Kavoon'),
+                    ),
+                    child: Text(
+                      'Get started',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
-
-                SizedBox(height: 30),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
-                  child: MaterialButton(
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  width: 266,
+                  child: ElevatedButton(
                     onPressed: onSignIn,
-                    child: Text('Sign In'),
-                    color: Colors.teal,
-                    textColor: Colors.white,
-                    height: 40,
-                    minWidth: double.infinity,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFF5F5F5),
+                      padding:
+                      EdgeInsets.symmetric(horizontal: 65, vertical: 20),
+                      textStyle: TextStyle(fontSize: 25, fontFamily: 'Kavoon'),
+                    ),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(color: Colors.orange),
+                    ),
                   ),
                 ),
-
               ],
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
