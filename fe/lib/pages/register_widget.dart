@@ -13,6 +13,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final _passwordController = TextEditingController();
   final _fnameController = TextEditingController();
   final _lnameController = TextEditingController();
+  final _confirmpasswordController = TextEditingController();
   bool passwordVisible = false;
 
   @override
@@ -52,8 +53,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text;
       final password = _passwordController.text;
+      final confirm_pwd = _confirmpasswordController.text;
       final fname = _fnameController.text;
       final lname = _lnameController.text;
+      if (password != confirm_pwd){
+        showErrorDialog("Passwords do not match");
+        return;
+      }
       int statusCode = await register(email, password, fname, lname);
       switch (statusCode){
         case 200: goToLogin();
@@ -211,7 +217,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                     padding: EdgeInsets.symmetric(horizontal: 35),
                     child: TextFormField(
                       obscureText: passwordVisible,
-                      controller: _passwordController,
+                      controller: _confirmpasswordController,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Color(0xFFEEE5E5),
@@ -239,7 +245,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
           
                       },
                       validator: (value){
-                        return value!.isEmpty ? 'Please enter password' : null;
+                        return value!.isEmpty ? 'Please confirm password' : null;
                       },
                     ),
                   ),

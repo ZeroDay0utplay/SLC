@@ -7,7 +7,6 @@ class HelloWidget extends StatefulWidget {
 }
 
 class _HelloWidgetState extends State<HelloWidget> {
-
   @override
   void initState() {
     super.initState();
@@ -26,43 +25,90 @@ class _HelloWidgetState extends State<HelloWidget> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Home Page'),
-          backgroundColor: Colors.cyan,
+          title: Center(
+            child: Text(
+              "What to do ?",
+              style: TextStyle(
+                  fontFamily: "Goudy Old Style",
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+          ),
+          toolbarHeight: 150,
         ),
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/home_bg.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: goToLearn,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange.withOpacity(0.9),
-                    padding: EdgeInsets.symmetric(horizontal: 90, vertical: 20),
-                    textStyle: TextStyle(fontSize: 30, fontFamily: 'Poppins'),
-                  ),
-                  child: Text('Learn', style: TextStyle(color: Colors.white)),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Container(
+                width: 170,
+                height: 520,
+                child: ElevatedButton(
+                    onPressed: goToLearn,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                      textStyle: TextStyle(fontSize: 20, fontFamily: 'Kavoon'),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20), // <-- Add this line
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: Text(
+                            "Learn",
+                            style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontFamily: 'Roboto'
+                            ),
+                          ),
+                        ),
+                        Image.asset("assets/images/learn.png"),
+                      ],
+                    )
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.withOpacity(0.9),
-                    padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
-                    textStyle: TextStyle(fontSize: 30, fontFamily: 'Poppins'),
-                  ),
-                  child: Text('Test', style: TextStyle(color: Colors.white)),
-                ),
-                SizedBox(height: 20),
-              ],
+              ),
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.only(right: 15),
+              child: Container(
+                width: 170,
+                height: 520,
+                child: ElevatedButton(
+                    onPressed: goToLearn,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFBDDCF9),
+                      textStyle: TextStyle(fontSize: 20, fontFamily: 'Kavoon'),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20), // <-- Add this line
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: Text(
+                            "Test",
+                            style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.orange,
+                                fontFamily: 'Roboto'
+                            ),
+                          ),
+                        ),
+                        Image.asset("assets/images/test.png"),
+                      ],
+                    )
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
