@@ -71,29 +71,14 @@ class _RegisterWidgetState extends State<RegisterWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double _screenWidth = MediaQuery.of(context).size.width;
+    double _screenHeight = MediaQuery.of(context).size.width;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Poppins'),
       home: Scaffold(
         appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Smart Learning Cube",
-                style: TextStyle(
-                  fontFamily: "Goudy Old Style",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25
-                ),
-              ), // Your app title
-              Image.asset(
-                'assets/images/cat_signup.png', // Replace with your image path
-                fit: BoxFit.contain,
-              ),
-            ],
-          ),
-          toolbarHeight: 150,
+          toolbarHeight: 0,
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -103,163 +88,245 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 12),
-          
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 35),
-                    child: TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        hintText: 'Enter mail',
-                        prefixIcon: Icon(Icons.email),
-                        filled: true,
-                        fillColor: Color(0xFFEEE5E5)
+                  Row(
+                    children: [
+                      Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(left: _screenHeight*0.05, top: _screenHeight*0.1, bottom: 0),
+                            child: Text(
+                              "Smart Learning Cube",
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontFamily: 'Goudy Old Style',
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(right: _screenWidth*0.325, top: _screenHeight*0.23, bottom: 0),
+                            child: Text(
+                              "First Name",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Inter',
+                                  fontSize: 15
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      onChanged: (String value){
-          
-                      },
-                      validator: (value){
-                        return value!.isEmpty ? 'Please enter email' : null;
-                      },
-                    ),
+                      Padding(
+                        padding: EdgeInsets.only(left: _screenHeight*0.12, top: _screenHeight*0.17),
+                        child: Image.asset("assets/images/cat_signup.png"),
+                      )
+                    ],
                   ),
-          
-                  SizedBox(height: 12,),
-          
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 35),
-                    child: TextFormField(
-                      keyboardType: TextInputType.text,
-                      controller: _fnameController,
-                      decoration: InputDecoration(
-                        labelText: 'First Name',
-                        hintText: 'Enter first name',
-                        prefixIcon: Icon(Icons.person),
-                        filled: true,
-                        fillColor: Color(0xFFEEE5E5)
-                      ),
-                      onChanged: (String value){
-          
-                      },
-                      validator: (value){
-                        return value!.isEmpty ? 'Please enter the name' : null;
-                      },
-                    ),
-                  ),
-          
-                  SizedBox(height: 12,),
-          
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 35),
-                    child: TextFormField(
-                      keyboardType: TextInputType.text,
-                      controller: _lnameController,
-                      decoration: InputDecoration(
-                        labelText: 'Last Name',
-                        hintText: 'Enter last name',
-                        prefixIcon: Icon(Icons.access_time),
-                        filled: true,
-                        fillColor: Color(0xFFEEE5E5)
-                      ),
-                      onChanged: (String value){
-          
-                      },
-                      validator: (value){
-                        return value!.isEmpty ? 'Please enter the age of the child' : null;
-                      },
-                    ),
-                  ),
-          
-                  SizedBox(height: 12,),
-          
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 35),
-                    child: TextFormField(
-                      obscureText: passwordVisible,
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFEEE5E5),
-                        hintText: "Password",
-                        labelText: "Password",
-                        //helperText:"Password must contain special character",
-                        //helperStyle:TextStyle(color:Colors.teal),
-                        prefixIcon: Icon(Icons.lock),
-                        suffixIcon: IconButton(
-                          icon: Icon(passwordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                          onPressed: () {
-                            setState(
-                                  () {
-                                passwordVisible = !passwordVisible;
-                              },
-                            );
-                          },
+                    padding: EdgeInsets.symmetric(horizontal: _screenWidth*0.035),
+                    child: Container(
+                      height: _screenHeight*0.14,
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: _fnameController,
+                        decoration: InputDecoration(
+                          suffixIcon: Icon(Icons.person),
+                          border: OutlineInputBorder(),
                         ),
-                        alignLabelWithHint: false,
+                        onChanged: (String value){
+
+                        },
+                        validator: (value){
+                          return value!.isEmpty ? 'Please enter the name' : null;
+                        },
                       ),
-                      keyboardType: TextInputType.visiblePassword,
-                      onChanged: (String value){
-          
-                      },
-                      validator: (value){
-                        return value!.isEmpty ? 'Please enter password' : null;
-                      },
-                    ),
+                    )
                   ),
-          
-                  SizedBox(height: 12,),
-          
+
+                  SizedBox(height: 20,),
+
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 35),
-                    child: TextFormField(
-                      obscureText: passwordVisible,
-                      controller: _confirmpasswordController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFEEE5E5),
-                        hintText: "Confirm Password",
-                        labelText: "Confirm Password",
-                        //helperText:"Password must contain special character",
-                        //helperStyle:TextStyle(color:Colors.teal),
-                        prefixIcon: Icon(Icons.lock),
-                        suffixIcon: IconButton(
-                          icon: Icon(passwordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                          onPressed: () {
-                            setState(
-                                  () {
-                                passwordVisible = !passwordVisible;
-                              },
-                            );
-                          },
-                        ),
-                        alignLabelWithHint: false,
+                    padding: EdgeInsets.only(right: _screenWidth*0.72),
+                    child: Text(
+                      "Last Name",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Inter',
+                          fontSize: 15
                       ),
-                      keyboardType: TextInputType.visiblePassword,
-                      onChanged: (String value){
-          
-                      },
-                      validator: (value){
-                        return value!.isEmpty ? 'Please confirm password' : null;
-                      },
                     ),
                   ),
-          
-                  SizedBox(height: 40,),
-          
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: _screenHeight*0.035),
+                    child: Container(
+                      height: _screenHeight*0.14,
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: _lnameController,
+                        decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.perm_contact_cal_rounded),
+                            border: OutlineInputBorder()
+                        ),
+                        onChanged: (String value){
+
+                        },
+                        validator: (value){
+                          return value!.isEmpty ? 'Please enter the age of the child' : null;
+                        },
+                      ),
+                    )
+                  ),
+
+                  SizedBox(height: 20,),
+
+                  Padding(
+                    padding: EdgeInsets.only(right: _screenWidth*0.82),
+                    child: Text(
+                      "Email",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Inter',
+                          fontSize: 15
+                      ),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: _screenHeight*0.035),
+                    child: Container(
+                      height: _screenHeight*0.14,
+                      child: TextFormField(
+                        style: TextStyle(
+                          shadows: <Shadow>[],
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                            labelText: 'example@gmail.com',
+                            suffixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder()
+                        ),
+                        onChanged: (String value){
+
+                        },
+                        validator: (value){
+                          return value!.isEmpty ? 'Please enter email' : null;
+                        },
+                      ),
+                    )
+                  ),
+
+                  SizedBox(height: 20,),
+
+                  Padding(
+                    padding: EdgeInsets.only(right: _screenWidth*0.74),
+                    child: Text(
+                      "Password",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Inter',
+                          fontSize: 15
+                      ),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: _screenHeight*0.035),
+                    child: Container(
+                      height: _screenHeight*0.14,
+                      child: TextFormField(
+                        obscureText: passwordVisible,
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          //helperText:"Password must contain special character",
+                          //helperStyle:TextStyle(color:Colors.teal),
+                          suffixIcon: IconButton(
+                            icon: Icon(passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(
+                                    () {
+                                  passwordVisible = !passwordVisible;
+                                },
+                              );
+                            },
+                          ),
+                          alignLabelWithHint: false,
+                        ),
+                        keyboardType: TextInputType.visiblePassword,
+                        onChanged: (String value){
+
+                        },
+                        validator: (value){
+                          return value!.isEmpty ? 'Please enter password' : null;
+                        },
+                      ),
+                    )
+                  ),
+
+                  SizedBox(height: 20,),
+
+                  Padding(
+                    padding: EdgeInsets.only(right: _screenWidth*0.58),
+                    child: Text(
+                      "Confirm Password",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Inter',
+                          fontSize: 15
+                      ),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: _screenHeight*0.035),
+                    child: Container(
+                      height: _screenHeight*0.14,
+                      child: TextFormField(
+                        obscureText: passwordVisible,
+                        controller: _confirmpasswordController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          //helperText:"Password must contain special character",
+                          //helperStyle:TextStyle(color:Colors.teal),
+                          suffixIcon: IconButton(
+                            icon: Icon(passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(
+                                    () {
+                                  passwordVisible = !passwordVisible;
+                                },
+                              );
+                            },
+                          ),
+                          alignLabelWithHint: false,
+                        ),
+                        keyboardType: TextInputType.visiblePassword,
+                        onChanged: (String value){
+
+                        },
+                        validator: (value){
+                          return value!.isEmpty ? 'Please confirm password' : null;
+                        },
+                      ),
+                    )
+                  ),
+
+                  SizedBox(height: 30,),
+
                   Container(
-                    width: 275,
+                    width: _screenWidth*0.7,
                     child: ElevatedButton(
                       onPressed: _handleRegister,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
                         padding:
-                        EdgeInsets.symmetric(horizontal: 65, vertical: 20),
+                        EdgeInsets.symmetric(horizontal: _screenWidth*0.1, vertical: _screenHeight*0.04),
                         textStyle: TextStyle(fontSize: 20, fontFamily: 'Kavoon'),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20), // <-- Add this line

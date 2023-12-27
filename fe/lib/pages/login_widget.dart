@@ -68,6 +68,8 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double _screenWidth = MediaQuery.of(context).size.width;
+    double _screenHeight = MediaQuery.of(context).size.width;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -106,68 +108,92 @@ class _LoginWidgetState extends State<LoginWidget> {
           
                   SizedBox(height: 30),
           
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 35),
-                    child: TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        hintText: 'Enter mail',
-                        prefixIcon: Icon(Icons.email),
-                        filled: true,
-                        fillColor: Color(0xFFEEE5E5),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(right: _screenWidth*0.82),
+                        child: Text(
+                          "Email",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Inter',
+                              fontSize: 15
+                          ),
+                        ),
                       ),
-                      onChanged: (String value){
-          
-                      },
-                      validator: (value){
-                        return value!.isEmpty ? 'Please enter email' : null;
-                      },
-                    ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: _screenWidth*0.035),
+                        child: TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                              hintText: 'example@gmail.com',
+                              suffixIcon: Icon(Icons.email),
+                              border: OutlineInputBorder()
+                          ),
+                          onChanged: (String value){
+
+                          },
+                          validator: (value){
+                            return value!.isEmpty ? 'Please enter email' : null;
+                          },
+                        ),
+                      ),
+                    ],
                   ),
           
                   SizedBox(height: 30,),
           
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 35),
-                    child: TextFormField(
-                      obscureText: passwordVisible,
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFEEE5E5),
-                        hintText: "Password",
-                        labelText: "Password",
-                        //helperText:"Password must contain special character",
-                        //helperStyle:TextStyle(color:Colors.teal),
-                        prefixIcon: Icon(Icons.lock),
-                        suffixIcon: IconButton(
-                          icon: Icon(passwordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                          onPressed: () {
-                            setState(
-                                  () {
-                                passwordVisible = !passwordVisible;
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(right: _screenWidth*0.74),
+                        child: Text(
+                          "Password",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Inter',
+                              fontSize: 15
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: _screenWidth*0.035),
+                        child: TextFormField(
+                          obscureText: passwordVisible,
+                          controller: _passwordController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            //helperText:"Password must contain special character",
+                            //helperStyle:TextStyle(color:Colors.teal),
+                            suffixIcon: IconButton(
+                              icon: Icon(passwordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: () {
+                                setState(
+                                      () {
+                                    passwordVisible = !passwordVisible;
+                                  },
+                                );
                               },
-                            );
+                            ),
+                            alignLabelWithHint: false,
+                          ),
+                          keyboardType: TextInputType.visiblePassword,
+                          onChanged: (String value){
+
+                          },
+                          validator: (value){
+                            return value!.isEmpty ? 'Please enter password' : null;
                           },
                         ),
-                        alignLabelWithHint: false,
                       ),
-                      keyboardType: TextInputType.visiblePassword,
-                      onChanged: (String value){
-          
-                      },
-                      validator: (value){
-                        return value!.isEmpty ? 'Please enter password' : null;
-                      },
-                    ),
+                    ],
                   ),
           
                   Padding(
-                    padding: EdgeInsets.only(top: 10, left: 150, bottom: 0),
+                    padding: EdgeInsets.only(top: _screenHeight*0.01, left: _screenWidth*0.5),
                     child: InkWell(
                       onTap: onForgotPwd,
                       child: Text(
