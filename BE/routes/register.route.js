@@ -1,5 +1,32 @@
-const {router, User, bcrypt} = require("../middleware/exports");
+const {router, User, bcrypt, generateAccessToken} = require("../middleware/exports");
 const validator = require("validator");
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
+
+const sendMail = async({from, to, subject, text}) =>{
+
+    try {
+      let mailOptions = ({
+        from,
+        to,
+        subject,
+        text
+    })
+    const Transporter = nodemailer.createTransport({
+        service: "outlook",
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.EMAIL_PWD,
+        },
+      });
+  
+      return await Transporter.sendMail(mailOptions);
+      
+    } catch (error) {
+      console.log(error)
+    }
+      
+  }
 
 
 router.post("/register", async (req, res)=>{
@@ -10,17 +37,35 @@ router.post("/register", async (req, res)=>{
         return res.status(411).json({ errors: [{ msg: 'User already exists' }] });
     }
     // Create new user
-    const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     const user = new User({
-        email,
-        password: hashedPassword,
-        fname,
-        lname
+        "email": email,
+        "password": hashedPassword,
+        "fname": fname,
+        "lname": lname,
+        "isVerified": false
+        
     });
     await user.save();
-    return res.status(200).json({"message": "User registered successfully"});
+    if (user) {
+        let setToken = generateAccessToken(crypto.randomBytes(16).toString("hex"), 1);
+        if (setToken) {
+            sendMail({
+            from: process.env.EMAIL,
+            to: `${email}`,
+            subject: "Account Verification Link",
+            text: `Hello, ${fname} ${lname} Please verify your email by
+                    clicking this link :
+                    http://192.168.1.3:3000/api/users/verify-email/${user._id}/${setToken} `,
+            })
+
+        } else {
+            return res.status(400).send("token not created");
+        }
+        return res.status(200).json({"message": "User registered successfully"});
+    }
+    return res.status(409).send("Details are not correct");
 });
 
 

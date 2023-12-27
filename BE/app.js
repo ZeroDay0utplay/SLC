@@ -1,8 +1,6 @@
 require("dotenv").config();
 const {mongoose, express, bodyParser} = require("./middleware/exports.js");
 
-// For testing, we generate two symbols and we send sym1 and sound[sym2] and we check sym1==sym2 ?
-
 mongoose.connect('mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PWD+'@cluster0.7aitjvf.mongodb.net/slc');
 
 const app = express();
@@ -15,6 +13,8 @@ const register = require("./routes/register.route.js");
 const learn = require("./routes/learn.route.js");
 const test = require("./routes/test.route.js");
 const save_test = require("./routes/save.test.route.js");
+const verifyEmail = require("./routes/verify.mail.route.js");
+
 
 app.use("/", root);
 app.use('/login', login);
@@ -22,6 +22,7 @@ app.use('/register', register);
 app.use("/learn", learn);
 app.use("/test", test);
 app.use("/save_test", save_test);
+app.use('/verify-email/:id/:token', verifyEmail)
 
 
 app.listen(3000, () => {

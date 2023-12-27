@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken")
 
 
-function generateAccessToken(userId) {
+function generateAccessToken(userId, duration) {
     const payload = {
         userId: userId,
         iat: Math.floor(Date.now() / 1000),
-        exp: Math.floor(Date.now() / 1000) + (60 * 90), // number of minutes
+        exp: Math.floor(Date.now() / 1000) + (60 * duration), // number of minutes
     };
 
     return jwt.sign(payload, process.env.TOKEN_SECRET);

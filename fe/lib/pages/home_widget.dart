@@ -21,6 +21,8 @@ class _HelloWidgetState extends State<HelloWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double _screenWidth = MediaQuery.of(context).size.width;
+    double _screenHeight = MediaQuery.of(context).size.width;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -35,7 +37,7 @@ class _HelloWidgetState extends State<HelloWidget> {
               ),
             ),
           ),
-          toolbarHeight: 150,
+          toolbarHeight: _screenHeight*0.3,
         ),
         body: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,8 +45,8 @@ class _HelloWidgetState extends State<HelloWidget> {
             Padding(
               padding: EdgeInsets.only(left: 15),
               child: Container(
-                width: 170,
-                height: 520,
+                width: _screenHeight*0.435,
+                height: _screenHeight*1.32,
                 child: ElevatedButton(
                     onPressed: goToLearn,
                     style: ElevatedButton.styleFrom(
@@ -77,8 +79,8 @@ class _HelloWidgetState extends State<HelloWidget> {
             Padding(
               padding: EdgeInsets.only(right: 15),
               child: Container(
-                width: 170,
-                height: 520,
+                width: _screenHeight*0.435,
+                height: _screenHeight*1.32,
                 child: ElevatedButton(
                     onPressed: goToLearn,
                     style: ElevatedButton.styleFrom(

@@ -9,6 +9,7 @@ const userSchema = {
     "test_letters": Map,
     "test_numbers": Map,
     "test_colors": Map,
+    "isVerified": Boolean
 };
 
 const User = mongoose.model("User", userSchema);

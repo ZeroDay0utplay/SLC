@@ -203,7 +203,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
                         decoration: InputDecoration(
-                            labelText: 'example@gmail.com',
+                            hintText: 'example@gmail.com',
                             suffixIcon: Icon(Icons.email),
                             border: OutlineInputBorder()
                         ),
