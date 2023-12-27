@@ -4,26 +4,12 @@ const crypto = require("crypto");
 const sendMail = require("../middleware/sendMail");
 
 
-router.post("/register", async (req, res)=>{
-    const {email, password, fname, lname} = req.body;
-    if (!(validator.isEmail(email))) return res.status(408).json({"message": "Invalid email address"});
-    const userExists = await User.findOne({ email: email });
-    if (userExists) {
-        return res.status(411).json({ errors: [{ msg: 'User already exists' }] });
-    }
-    // Create new user
-    const hashedPassword = bcrypt.hashSync(password, 10);
-
-    const user = new User({
-        "email": email,
-        "password": hashedPassword,
-        "fname": fname,
-        "lname": lname,
-        "isVerified": false
-        
-    });
-    await user.save();
+router.post("/resend", async (req, res)=>{
+    const user = await User.findOne({"email": req.body.email});
     if (user) {
+        const email = user.email;
+        const fname = user.fname;
+        const lname = user.lname;
         let setToken = generateAccessToken(crypto.randomBytes(16).toString("hex"), 1);
         if (setToken) {
             sendMail({
@@ -38,7 +24,7 @@ router.post("/register", async (req, res)=>{
         } else {
             return res.status(400).send("token not created");
         }
-        return res.status(200).json({"message": "User registered successfully"});
+        return res.status(200).json({"message": "Email Verification has been resent successfully"});
     }
     return res.status(409).send("Details are not correct");
 });

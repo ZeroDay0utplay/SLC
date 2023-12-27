@@ -10,7 +10,6 @@ const asyncHandler = require('express-async-handler');
 
 const {User} = require("../models/user.model.js");
 const {Letter} = require("../models/tests.model.js");
-const {Token} = require("../models/token.model.js");
 const {handleErrors} = require("../middleware/handle_errors.js");
 const {authorization, generateAccessToken} = require("../middleware/auth.js");
 
@@ -22,7 +21,6 @@ module.exports = {
     router,
     asyncHandler,
     User,
-    Token,
     Letter,
     bcrypt,
     handleErrors,
