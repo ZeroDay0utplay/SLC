@@ -15,6 +15,7 @@ const test = require("./routes/test.route.js");
 const save_test = require("./routes/save.test.route.js");
 const verifyEmail = require("./routes/verify.mail.route.js");
 const resendEmailVerif = require("./routes/resend.verif.js");
+const isVerified = require("./routes/isVerified.js");
 
 
 app.use("/", root);
@@ -25,6 +26,7 @@ app.use("/test", test);
 app.use("/save_test", save_test);
 app.use('/verify-email/:id/:token', verifyEmail);
 app.use("/resend", resendEmailVerif);
+app.use("/is-verified", isVerified);
 
 
 app.listen(3000, () => {

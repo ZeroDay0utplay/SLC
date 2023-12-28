@@ -1,5 +1,4 @@
-const {router, User, bcrypt, generateAccessToken} = require("../middleware/exports");
-const validator = require("validator");
+const {router, User, generateAccessToken} = require("../middleware/exports");
 const crypto = require("crypto");
 const sendMail = require("../middleware/sendMail");
 
@@ -10,7 +9,7 @@ router.post("/resend", async (req, res)=>{
         const email = user.email;
         const fname = user.fname;
         const lname = user.lname;
-        let setToken = generateAccessToken(crypto.randomBytes(16).toString("hex"), 1);
+        let setToken = generateAccessToken(crypto.randomBytes(16).toString("hex"), 10);
         if (setToken) {
             sendMail({
             from: process.env.EMAIL,

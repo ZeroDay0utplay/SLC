@@ -9,7 +9,7 @@ router.post('/login', handleErrors(asyncHandler(async (req, res) => {
     if (!user) {
         return res.status(400).json({ message: "User does not exist" });
     }
-    if (!(user.isVerified)) return res.status(411).json({ message: "Verify your account" });
+    if (!(user.isVerified)) return res.status(411).json({ message: "Verify your account" }); // redirect to verif page
     const userPWD = await user.password;
     const isMatch = bcrypt.compareSync(password, userPWD);
 
