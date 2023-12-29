@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class LearnWidget extends StatefulWidget {
+class TestWidget extends StatefulWidget {
   @override
-  _LearnWidgetState createState() => _LearnWidgetState();
+  _TestWidgetState createState() => _TestWidgetState();
 }
 
-class _LearnWidgetState extends State<LearnWidget> {
+class _TestWidgetState extends State<TestWidget> {
 
   @override
   void initState() {
@@ -26,20 +26,20 @@ class _LearnWidgetState extends State<LearnWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: _screenWidth*0.05),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: _screenWidth*0.65),
-                    child: Image.asset(
-                      "assets/images/cat_learn.png",
-                      width: _screenWidth*0.25,
+                padding: EdgeInsets.only(left: _screenWidth*0.05),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: _screenWidth*0.65),
+                      child: Image.asset(
+                        "assets/images/cat_learn.png",
+                        width: _screenWidth*0.25,
+                      ),
                     ),
-                  ),
-                  Container(
-                    width: _screenHeight*0.9,
-                    height: _screenHeight*0.4,
-                    child: ElevatedButton(
+                    Container(
+                      width: _screenHeight*0.9,
+                      height: _screenHeight*0.4,
+                      child: ElevatedButton(
                         onPressed: (){},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,
@@ -49,27 +49,27 @@ class _LearnWidgetState extends State<LearnWidget> {
                           ),
                         ),
                         child: Padding(
-                              padding: EdgeInsets.only(bottom: _screenHeight*0.02),
-                              child: Text(
-                                "Colors",
-                                style: TextStyle(
-                                    fontSize: 80,
-                                    color: Colors.white,
-                                    fontFamily: 'Rubik Wet Paint'
-                                ),
-                              ),
+                          padding: EdgeInsets.only(bottom: _screenHeight*0.02),
+                          child: Text(
+                            "Colors",
+                            style: TextStyle(
+                                fontSize: 80,
+                                color: Colors.white,
+                                fontFamily: 'Rubik Wet Paint'
                             ),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              )
+                  ],
+                )
             ),
             Padding(
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
-                width: _screenHeight*0.9,
-                height: _screenHeight*0.4,
-                child: ElevatedButton(
+                  width: _screenHeight*0.9,
+                  height: _screenHeight*0.4,
+                  child: ElevatedButton(
                     onPressed: (){},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFBDDCF9),
@@ -79,25 +79,25 @@ class _LearnWidgetState extends State<LearnWidget> {
                       ),
                     ),
                     child: Padding(
-                          padding: EdgeInsets.only(bottom: 20),
-                          child: Text(
-                            "1 2 3",
-                            style: TextStyle(
-                                fontSize: 100,
-                                color: Colors.orange,
-                                fontFamily: 'RozhaOne'
-                            ),
-                          ),
+                      padding: EdgeInsets.only(bottom: 20),
+                      child: Text(
+                        "1 2 3",
+                        style: TextStyle(
+                            fontSize: 100,
+                            color: Colors.orange,
+                            fontFamily: 'RozhaOne'
                         ),
-                    )
-                ),
+                      ),
+                    ),
+                  )
               ),
+            ),
             Padding(
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
-                width: _screenHeight*0.9,
-                height: _screenHeight*0.45,
-                child: ElevatedButton(
+                  width: _screenHeight*0.9,
+                  height: _screenHeight*0.45,
+                  child: ElevatedButton(
                     onPressed: (){},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFEEE5E5),
@@ -107,19 +107,19 @@ class _LearnWidgetState extends State<LearnWidget> {
                       ),
                     ),
                     child: Padding(
-                          padding: EdgeInsets.only(bottom: 20),
-                          child: Text(
-                            "A B C",
-                            style: TextStyle(
-                                fontSize: 100,
-                                color: Color(0xFF77A9D8),
-                                fontFamily: 'RozhaOne'
-                            ),
-                          ),
+                      padding: EdgeInsets.only(bottom: 20),
+                      child: Text(
+                        "A B C",
+                        style: TextStyle(
+                            fontSize: 100,
+                            color: Color(0xFF77A9D8),
+                            fontFamily: 'RozhaOne'
                         ),
-                    )
-                ),
+                      ),
+                    ),
+                  )
               ),
+            ),
           ],
         ),
       ),
