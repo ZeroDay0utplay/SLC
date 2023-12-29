@@ -39,7 +39,7 @@ class _HelloWidgetState extends State<HelloWidget> {
           ),
           toolbarHeight: _screenHeight*0.3,
         ),
-        body: Row(
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(

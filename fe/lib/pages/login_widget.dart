@@ -1,6 +1,7 @@
 import 'package:fe/pages/home_widget.dart';
 import 'package:flutter/material.dart';
 import '../routes/login.route.dart';
+import 'package:quickalert/quickalert.dart';
 
 class LoginWidget extends StatefulWidget {
   @override
@@ -46,15 +47,55 @@ class _LoginWidgetState extends State<LoginWidget> {
     );
   }
 
+  void successLoginAlert(String? msg) async{
+    await QuickAlert.show(
+      context: context,
+      type: QuickAlertType.success,
+      text: msg,
+      autoCloseDuration: const Duration(seconds: 2),
+      showConfirmBtn: false,
+    );
+    goToHello();
+  }
+
+  void user404Alert(String? msg){
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.warning,
+      text: msg,
+    );
+  }
+
+  void wrongPwdAlert(String? msg) async{
+    await QuickAlert.show(
+      context: context,
+      type: QuickAlertType.error,
+      title: 'Oops...',
+      text: msg,
+    );
+  }
+
+  void confirmAlert(String? msg) async{
+    await QuickAlert.show(
+      context: context,
+      type: QuickAlertType.warning,
+      text: msg,
+      autoCloseDuration: const Duration(seconds: 2),
+      showConfirmBtn: false,
+    );
+    //goToConfirmEmail();
+  }
+
   void _handleLogin() async{
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text;
       final password = _passwordController.text;
       int statusCode = await login(email, password);
       switch (statusCode){
-        case 200: goToHello();
-        case 400: showErrorDialog("User does not exist");
-        case 407: showErrorDialog("Wrong password");
+        case 200: successLoginAlert("Login successfully");
+        case 400: user404Alert("User not found"); // That's it to display an alert, use other properties to customize.
+        case 407: wrongPwdAlert("Wrong password");
+        case 411 : confirmAlert("Please confirm your account");
       }
     }
   }

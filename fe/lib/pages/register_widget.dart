@@ -1,6 +1,7 @@
 import 'package:fe/pages/login_widget.dart';
 import 'package:flutter/material.dart';
 import '../routes/register.route.dart';
+import 'package:quickalert/quickalert.dart';
 
 class RegisterWidget extends StatefulWidget {
   @override
@@ -29,23 +30,31 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     );
   }
 
-  void showErrorDialog(String errorMessage) {
-    showDialog(
+  void successRegisterAlert(String? msg) async{
+    await QuickAlert.show(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Error'),
-          content: Text(errorMessage),
-          actions: [
-            TextButton(
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
+      type: QuickAlertType.success,
+      text: msg,
+      autoCloseDuration: const Duration(seconds: 2),
+      showConfirmBtn: false,
+    );
+    goToLogin();
+  }
+
+  void invalidMailAlert(String? msg){
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.warning,
+      text: msg,
+    );
+  }
+
+  void pwdNotMatchAlert(String? msg) async{
+    await QuickAlert.show(
+      context: context,
+      type: QuickAlertType.error,
+      title: 'Oops...',
+      text: msg,
     );
   }
 
@@ -57,14 +66,14 @@ class _RegisterWidgetState extends State<RegisterWidget> {
       final fname = _fnameController.text;
       final lname = _lnameController.text;
       if (password != confirm_pwd){
-        showErrorDialog("Passwords do not match");
+        pwdNotMatchAlert("Passwords do not match");
         return;
       }
       int statusCode = await register(email, password, fname, lname);
       switch (statusCode){
-        case 200: goToLogin();
-        case 408: showErrorDialog("Invalid email address");
-        case 411: showErrorDialog("User already exists");
+        case 200: successRegisterAlert("User registred successfully");
+        case 408: invalidMailAlert("Invalid email address");
+        case 411: invalidMailAlert("User already exists");
       }
     }
   }
