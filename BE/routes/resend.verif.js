@@ -28,7 +28,7 @@ router.post("/resend", async (req, res)=>{
         }
         return res.status(409).send("Details are not correct");
     } catch (err) {
-        return res.status(500).json({message: "Failed to read file"});
+        return res.status(500).json({message: "Internal Server Error"});
     }
 });
 
