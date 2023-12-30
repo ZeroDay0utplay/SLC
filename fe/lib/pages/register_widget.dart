@@ -1,7 +1,7 @@
-import 'package:fe/pages/login_widget.dart';
+import '../middlewares/register_alerts.dart';
 import 'package:flutter/material.dart';
 import '../routes/register.route.dart';
-import 'package:quickalert/quickalert.dart';
+import '../pages/email_verif_widget.dart';
 
 class RegisterWidget extends StatefulWidget {
   @override
@@ -23,40 +23,14 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     passwordVisible = true;
   }
 
-  void goToLogin() {
+  void goToVerifEmail(String email) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoginWidget()),
+      MaterialPageRoute(builder: (context) => EmailVerifWidget(email: email,)),
     );
   }
 
-  void successRegisterAlert(String? msg) async{
-    await QuickAlert.show(
-      context: context,
-      type: QuickAlertType.success,
-      text: msg,
-      autoCloseDuration: const Duration(seconds: 2),
-      showConfirmBtn: false,
-    );
-    goToLogin();
-  }
 
-  void invalidMailAlert(String? msg){
-    QuickAlert.show(
-      context: context,
-      type: QuickAlertType.warning,
-      text: msg,
-    );
-  }
-
-  void pwdNotMatchAlert(String? msg) async{
-    await QuickAlert.show(
-      context: context,
-      type: QuickAlertType.error,
-      title: 'Oops...',
-      text: msg,
-    );
-  }
 
   void _handleRegister() async{
     if (_formKey.currentState!.validate()) {
@@ -66,14 +40,14 @@ class _RegisterWidgetState extends State<RegisterWidget> {
       final fname = _fnameController.text;
       final lname = _lnameController.text;
       if (password != confirm_pwd){
-        pwdNotMatchAlert("Passwords do not match");
+        pwdNotMatchAlert("Passwords do not match", context);
         return;
       }
       int statusCode = await register(email, password, fname, lname);
       switch (statusCode){
-        case 200: successRegisterAlert("User registred successfully");
-        case 408: invalidMailAlert("Invalid email address");
-        case 411: invalidMailAlert("User already exists");
+        case 200: successRegisterAlert("User registred successfully", context, goToVerifEmail, email);
+        case 408: invalidMailAlert("Invalid email address", context);
+        case 411: invalidMailAlert("User already exists", context);
       }
     }
   }

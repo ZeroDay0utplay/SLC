@@ -48,13 +48,13 @@ class _HelloWidgetState extends State<HelloWidget> {
           toolbarHeight: _screenHeight*0.3,
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.4,
+                height: _screenHeight*0.42,
                 child: ElevatedButton(
                     onPressed: goToLearn,
                     style: ElevatedButton.styleFrom(
@@ -71,7 +71,7 @@ class _HelloWidgetState extends State<HelloWidget> {
                           child: Text(
                             "Learn",
                             style: TextStyle(
-                                fontSize: 30,
+                                fontSize: 25,
                                 color: Colors.white,
                                 fontFamily: 'Roboto'
                             ),
@@ -79,8 +79,8 @@ class _HelloWidgetState extends State<HelloWidget> {
                         ),
                         Image.asset(
                           "assets/images/learn.png",
-                          width: _screenWidth*0.25,
-                          height: _screenHeight*0.25,
+                          width: _screenWidth*0.28,
+                          height: _screenHeight*0.28,
                         ),
                       ],
                     )
@@ -91,7 +91,7 @@ class _HelloWidgetState extends State<HelloWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.4,
+                height: _screenHeight*0.42,
                 child: ElevatedButton(
                     onPressed: goToTest,
                     style: ElevatedButton.styleFrom(
@@ -102,14 +102,13 @@ class _HelloWidgetState extends State<HelloWidget> {
                       ),
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.only(bottom: _screenHeight*0.02),
                           child: Text(
                             "Test",
                             style: TextStyle(
-                                fontSize: 30,
+                                fontSize: 25,
                                 color: Colors.orange,
                                 fontFamily: 'Roboto'
                             ),
@@ -117,8 +116,8 @@ class _HelloWidgetState extends State<HelloWidget> {
                         ),
                         Image.asset(
                           "assets/images/test.png",
-                          width: _screenWidth*0.25,
-                          height: _screenHeight*0.25,
+                          width: _screenWidth*0.28,
+                          height: _screenHeight*0.28,
                         ),
                       ],
                     )
@@ -130,9 +129,9 @@ class _HelloWidgetState extends State<HelloWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.4,
+                height: _screenHeight*0.42,
                 child: ElevatedButton(
-                    onPressed: goToLearn,
+                    onPressed: (){},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFEEE5E5),
                       textStyle: TextStyle(fontSize: 20, fontFamily: 'Kavoon'),
@@ -141,14 +140,13 @@ class _HelloWidgetState extends State<HelloWidget> {
                       ),
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.only(bottom: _screenHeight*0.02),
                           child: Text(
                             "child's progress",
                             style: TextStyle(
-                                fontSize: 30,
+                                fontSize: 25,
                                 color: Color(0xFF77A9D8),
                                 fontFamily: 'Roboto'
                             ),
@@ -156,8 +154,8 @@ class _HelloWidgetState extends State<HelloWidget> {
                         ),
                         Image.asset(
                           "assets/images/progress.png",
-                          width: _screenWidth*0.25,
-                          height: _screenHeight*0.25,
+                          width: _screenWidth*0.28,
+                          height: _screenHeight*0.28,
                         ),
                       ],
                     )
