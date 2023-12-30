@@ -15,11 +15,13 @@ class _PwdResetWidgetState extends State<PwdResetWidget> {
   final _passwordController = TextEditingController();
   final _confirmpasswordController = TextEditingController();
   bool passwordVisible = false;
+  bool confirmPasswordVisible = false;
 
   @override
   void initState() {
     super.initState();
     passwordVisible = true;
+    confirmPasswordVisible = true;
   }
 
   void goToLogin(){
@@ -149,20 +151,20 @@ class _PwdResetWidgetState extends State<PwdResetWidget> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: _screenWidth*0.035),
                         child: TextFormField(
-                          obscureText: passwordVisible,
+                          obscureText: confirmPasswordVisible,
                           controller: _confirmpasswordController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             //helperText:"Password must contain special character",
                             //helperStyle:TextStyle(color:Colors.teal),
                             suffixIcon: IconButton(
-                              icon: Icon(passwordVisible
+                              icon: Icon(confirmPasswordVisible
                                   ? Icons.visibility
                                   : Icons.visibility_off),
                               onPressed: () {
                                 setState(
                                       () {
-                                    passwordVisible = !passwordVisible;
+                                        confirmPasswordVisible = !confirmPasswordVisible;
                                   },
                                 );
                               },

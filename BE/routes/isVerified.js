@@ -5,11 +5,10 @@ router.post("/isVerified", async (req, res) => {
     try {
         const user = await User.findOne({"email": email});
         if (user) {
-            // while 1 in front with sleep of 500ms
-            if (user.isVerified) res.status(200).json({message: "Your account has been successfully verified"});
+            if (user.isVerified) return res.status(200).json({message: "Your account has been successfully verified"});
             return res.status(401).json({message: "Your account has not been verified yet"});
         }
-        else return res.status(404).json({message: "User not found"});
+        return res.status(404).json({message: "User not found"});
     } catch (err) {
         return res.status(500).json({message: "Failed to verify account"});
     }

@@ -1,4 +1,5 @@
 import 'package:fe/pages/hello_widget.dart';
+import 'package:fe/routes/resend.route.dart';
 import 'package:flutter/material.dart';
 import '../routes/login.route.dart';
 import '../middlewares/alerts.dart';
@@ -53,6 +54,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           await errorAlert("Wrong password", context);
         case 411 :
           await errorAlert("Please confirm your account", context);
+          await resend(email);
           goToConfirmEmail(email);
       }
     }

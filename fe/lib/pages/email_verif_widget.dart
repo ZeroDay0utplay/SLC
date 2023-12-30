@@ -1,6 +1,5 @@
 import 'package:fe/middlewares/alerts.dart';
 import 'package:fe/pages/hello_widget.dart';
-import 'package:fe/pages/home_widget.dart';
 import 'package:flutter/material.dart';
 import '../routes/resend.route.dart';
 import 'dart:async';
@@ -29,7 +28,7 @@ class _EmailVerifWidgetState extends State<EmailVerifWidget>{
     else await warningAlert("Unexpected external error", context);
   }
 
-  void goToHome() {
+  void goToHome(){
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => HelloWidget()),
@@ -150,14 +149,13 @@ class _EmailVerifWidgetState extends State<EmailVerifWidget>{
     );
   }
 
-  void _startPeriodicEmailCheck() {
+  void _startPeriodicEmailCheck(){
     Timer.periodic(Duration(seconds: 1), (Timer timer) async{
       int statusCode = await verifMail(widget.email);
-      print(statusCode);
       if (statusCode == 200 ) {
+        timer.cancel();
         await successAlert("Account has been verified successfully", context);
         goToHome();
-        timer.cancel(); // stops the timer
       }
     });
   }

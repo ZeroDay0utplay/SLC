@@ -33,7 +33,7 @@ router.post("/test", authorization, (req, res)=>{
                 res.set('Content-Type', 'application/octet-stream');
                 res.set(`Content-Disposition', 'attachment; filename=${arr[randIndex2]}.mp3`);
                 data = JSON.stringify(data.toString("base64")); // serialization
-                res.status(200).json({"symbol": sym, "data": data, "answer": answer});
+                return res.status(200).json({"symbol": sym, "data": data, "answer": answer});
             }
         });
     } catch (err) {

@@ -19,7 +19,7 @@ router.post('/login', handleErrors(asyncHandler(async (req, res) => {
         }
         const token = generateAccessToken((user._id).toString(), 90);
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json({ auth_token: token, message: "Logged in successfully"});
+        return res.status(200).json({ auth_token: token, message: "Logged in successfully"});
     } catch (err) {
         return res.status(500).json({message: "Internal Server Error"});
     }

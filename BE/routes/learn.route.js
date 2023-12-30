@@ -9,12 +9,12 @@ router.post("/learn", authorization, (req, res) => {
 
         fs.readFile(filePath, (err, data) => {
             if (err) {
-                res.status(500).send('Could not read the file.');
+                return res.status(500).send('Could not read the file.');
             } else {
                 res.set('Content-Type', 'application/octet-stream');
                 res.set(`Content-Disposition', 'attachment; filename=${symbol}.mp3`);
                 data = JSON.stringify(data.toString("base64"));
-                res.status(200).json({data: data});
+                return res.status(200).json({data: data});
             }
         });
     } catch (err) {
