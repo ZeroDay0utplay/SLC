@@ -1,6 +1,10 @@
+import 'package:fe/middlewares/alerts.dart';
+import 'package:fe/pages/hello_widget.dart';
+import 'package:fe/pages/home_widget.dart';
 import 'package:flutter/material.dart';
 import '../routes/resend.route.dart';
-import 'package:quickalert/quickalert.dart';
+import 'dart:async';
+import '../routes/verif.email.route.dart';
 
 
 class EmailVerifWidget extends StatefulWidget{
@@ -15,32 +19,21 @@ class _EmailVerifWidgetState extends State<EmailVerifWidget>{
   @override
   void initState() {
     super.initState();
+    _startPeriodicEmailCheck();
   }
-
-  void resendSuccess() async{
-    await QuickAlert.show(
-      context: context,
-      type: QuickAlertType.success,
-      text: "Email Verification has been resent successfully",
-      autoCloseDuration: const Duration(seconds: 2),
-      showConfirmBtn: false,
-    );
-  }
-
-  void resendWarning() async{
-    await QuickAlert.show(
-      context: context,
-      type: QuickAlertType.success,
-      text: "Unexpected external error",
-      autoCloseDuration: const Duration(seconds: 2),
-      showConfirmBtn: false,
-    );
-  }
+  
 
   void resendEmail() async{
     int statusCode = await resend(widget.email);
-    if (statusCode==200) resendSuccess();
-    else resendWarning();
+    if (statusCode==200) await successAlert("Email Verification has been resent successfully", context);
+    else await warningAlert("Unexpected external error", context);
+  }
+
+  void goToHome() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HelloWidget()),
+    );
   }
 
   @override
@@ -155,6 +148,18 @@ class _EmailVerifWidgetState extends State<EmailVerifWidget>{
 
       ),
     );
+  }
+
+  void _startPeriodicEmailCheck() {
+    Timer.periodic(Duration(seconds: 1), (Timer timer) async{
+      int statusCode = await verifMail(widget.email);
+      print(statusCode);
+      if (statusCode == 200 ) {
+        await successAlert("Account has been verified successfully", context);
+        goToHome();
+        timer.cancel(); // stops the timer
+      }
+    });
   }
 
 }

@@ -1,7 +1,7 @@
 const {router, User} = require("../middleware/exports");
 
 
-router.post("/is-verified", async (req, res)=>{
+router.post("/isVerified", async (req, res)=>{
     const email = req.body.email;
     const user = await User.findOne({"email": email});
     if (user){

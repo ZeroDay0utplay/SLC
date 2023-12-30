@@ -7,9 +7,6 @@ router.get('/api/users/verify-email/:id/:token', async (req, res) => {
 
       jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
         if (err !== null && err.name === 'TokenExpiredError'){
-            if (usertoken){
-                usertoken.deleteOne({userId: req.params.id});
-            }
             return res.status(403).json({ message: 'Your verification link may have expired. Please click on resend for verify your Email.' });
         }
       });
@@ -18,7 +15,6 @@ router.get('/api/users/verify-email/:id/:token', async (req, res) => {
   
         const user = await User.findById(req.params.id);
         if (!user) {
-  
           return res.status(401).send({
             msg: "We were unable to find a user for this verification. Please SignUp!",
           });

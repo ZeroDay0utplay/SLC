@@ -1,7 +1,7 @@
-import 'package:fe/pages/home_widget.dart';
+import 'package:fe/pages/hello_widget.dart';
 import 'package:flutter/material.dart';
 import '../routes/login.route.dart';
-import '../middlewares/login_alerts.dart';
+import '../middlewares/alerts.dart';
 import 'forgot_password_widget.dart';
 import '../pages/email_verif_widget.dart';
 
@@ -44,10 +44,16 @@ class _LoginWidgetState extends State<LoginWidget> {
       final password = _passwordController.text;
       int statusCode = await login(email, password);
       switch (statusCode){
-        case 200: successLoginAlert("Login successfully", context, goToHello);
-        case 400: user404Alert("User not found", context); // That's it to display an alert, use other properties to customize.
-        case 407: wrongPwdAlert("Wrong password", context);
-        case 411 : confirmAlert("Please confirm your account", email, context, goToConfirmEmail);
+        case 200:
+          await successAlert("Login successfully", context);
+          goToHello();
+        case 400:
+          await warningAlert("User not found", context); // That's it to display an alert, use other properties to customize.
+        case 407:
+          await errorAlert("Wrong password", context);
+        case 411 :
+          await errorAlert("Please confirm your account", context);
+          goToConfirmEmail(email);
       }
     }
   }

@@ -22,7 +22,7 @@ void showErrorDialog(String errorMessage, BuildContext context) {
   );
 }
 
-void successRegisterAlert(String? msg, BuildContext context, fn, String email) async{
+Future<int> successAlert(String? msg, BuildContext context) async{
   await QuickAlert.show(
     context: context,
     type: QuickAlertType.success,
@@ -30,22 +30,24 @@ void successRegisterAlert(String? msg, BuildContext context, fn, String email) a
     autoCloseDuration: const Duration(seconds: 2),
     showConfirmBtn: false,
   );
-  fn(email);
+  return 1;
 }
 
-void invalidMailAlert(String? msg, BuildContext context){
+Future<int> warningAlert(String? msg, BuildContext context) async{
   QuickAlert.show(
     context: context,
     type: QuickAlertType.warning,
     text: msg,
   );
+  return 1;
 }
 
-void pwdNotMatchAlert(String? msg, BuildContext context) async{
+Future<int> errorAlert(String? msg, BuildContext context) async{
   await QuickAlert.show(
     context: context,
     type: QuickAlertType.error,
     title: 'Oops...',
     text: msg,
   );
+  return 1;
 }

@@ -1,4 +1,4 @@
-import '../middlewares/register_alerts.dart';
+import '../middlewares/alerts.dart';
 import 'package:flutter/material.dart';
 import '../routes/register.route.dart';
 import '../pages/email_verif_widget.dart';
@@ -40,14 +40,16 @@ class _RegisterWidgetState extends State<RegisterWidget> {
       final fname = _fnameController.text;
       final lname = _lnameController.text;
       if (password != confirm_pwd){
-        pwdNotMatchAlert("Passwords do not match", context);
+        errorAlert("Passwords do not match", context);
         return;
       }
       int statusCode = await register(email, password, fname, lname);
       switch (statusCode){
-        case 200: successRegisterAlert("User registred successfully", context, goToVerifEmail, email);
-        case 408: invalidMailAlert("Invalid email address", context);
-        case 411: invalidMailAlert("User already exists", context);
+        case 200:
+          await successAlert("User registred successfully", context);
+          goToVerifEmail(email);
+        case 408: await warningAlert("Invalid email address", context);
+        case 411: await warningAlert("User already exists", context);
       }
     }
   }
