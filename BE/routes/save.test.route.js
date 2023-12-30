@@ -41,7 +41,7 @@ router.post("/save_test", authorization, async (req, res) => {
         return res.status(200).json({message: "Test saved successfully"});
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ error: "Server error" });
+        return res.status(500).json({ error: "Internal Server Error" });
     }
 });
 

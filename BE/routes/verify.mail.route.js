@@ -41,8 +41,8 @@ router.get('/api/users/verify-email/:id/:token', async (req, res) => {
               .send("Your account has been successfully verified");
           }
         }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+        return res.status(500).json({message: "Internal Server Error"});
     }
   }
 );

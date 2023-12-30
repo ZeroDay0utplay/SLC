@@ -12,29 +12,33 @@ const topics = {
 
 
 router.post("/test", authorization, (req, res)=>{
-    const topic = req.body.topic;
-    if(!topics[topic]) {
-        return res.status(400).send('Invalid topic');
-    }
-
-    const arr = topics[topic];
-    const randIndex1 = Math.floor(Math.random() * arr.length);
-    const randIndex2 = Math.floor(Math.random() * arr.length);
-    const answer = randIndex1 === randIndex2;
-
-    const sym = arr[randIndex1];
-    const audioFile = path.join(__dirname, `../src/${topic}/${arr[randIndex2]}.mp3`);
-
-    fs.readFile(audioFile, (err, data) => {
-        if (err) {
-            res.status(500).send('Could not read the file.');
-        } else {
-            res.set('Content-Type', 'application/octet-stream');
-            res.set(`Content-Disposition', 'attachment; filename=${arr[randIndex2]}.mp3`);
-            data = JSON.stringify(data.toString("base64")); // serialization
-            res.status(200).json({"symbol": sym, "data": data, "answer": answer});
+    try{
+        const topic = req.body.topic;
+        if(!topics[topic]) {
+            return res.status(400).send('Invalid topic');
         }
-    });
+
+        const arr = topics[topic];
+        const randIndex1 = Math.floor(Math.random() * arr.length);
+        const randIndex2 = Math.floor(Math.random() * arr.length);
+        const answer = randIndex1 === randIndex2;
+
+        const sym = arr[randIndex1];
+        const audioFile = path.join(__dirname, `../src/${topic}/${arr[randIndex2]}.mp3`);
+
+        fs.readFile(audioFile, (err, data) => {
+            if (err) {
+                res.status(500).send('Could not read the file.');
+            } else {
+                res.set('Content-Type', 'application/octet-stream');
+                res.set(`Content-Disposition', 'attachment; filename=${arr[randIndex2]}.mp3`);
+                data = JSON.stringify(data.toString("base64")); // serialization
+                res.status(200).json({"symbol": sym, "data": data, "answer": answer});
+            }
+        });
+    } catch (err) {
+        return res.status(500).json({message: "Internal Server Error"});
+    }
 })
 
 

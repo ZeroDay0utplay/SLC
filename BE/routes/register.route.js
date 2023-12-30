@@ -5,6 +5,7 @@ const sendMail = require("../middleware/sendMail");
 
 
 router.post("/register", async (req, res)=>{
+   try{
     const {email, password, fname, lname} = req.body;
     if (!(validator.isEmail(email))) return res.status(408).json({"message": "Invalid email address"});
     const userExists = await User.findOne({ email: email });
@@ -41,6 +42,9 @@ router.post("/register", async (req, res)=>{
         return res.status(200).json({"message": "User registered successfully"});
     }
     return res.status(409).send("Details are not correct");
+   } catch (err) {
+      return res.status(500).json({message: "Internal Server Error"});
+  }
 });
 
 
