@@ -1,4 +1,7 @@
+import 'package:fe/middlewares/alerts.dart';
 import 'package:flutter/material.dart';
+import '../routes/sendMFP.route.dart';
+import '../pages/pwd_reset_widget.dart';
 
 
 class ForgotPwdWidget extends StatefulWidget{
@@ -13,6 +16,23 @@ class _ForgotPwdWidgetState extends State<ForgotPwdWidget> {
   @override
   void initState() {
     super.initState();
+  }
+
+  void goToResetPWD(){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PwdResetWidget(email: _emailController.text)),
+    );
+  }
+
+  void _sendMFP() async{
+    final email = _emailController.text;
+    int statusCode = await sendMFP(email);
+    if (statusCode == 400) await warningAlert("User does not exist", context);
+    else{
+      await successAlert("Reset link has been send successfully", context);
+      goToResetPWD();
+    }
   }
 
   @override
@@ -89,7 +109,7 @@ class _ForgotPwdWidgetState extends State<ForgotPwdWidget> {
                   Container(
                     width: 266,
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: _sendMFP,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
                         padding:

@@ -1,7 +1,11 @@
+import 'package:fe/pages/login_widget.dart';
 import 'package:flutter/material.dart';
-
+import '../middlewares/alerts.dart';
+import '../routes/reset.pwd.route.dart';
 
 class PwdResetWidget extends StatefulWidget{
+  final String email;
+  PwdResetWidget({required this.email});
   @override
   _PwdResetWidgetState createState() =>_PwdResetWidgetState();
 }
@@ -16,6 +20,31 @@ class _PwdResetWidgetState extends State<PwdResetWidget> {
   void initState() {
     super.initState();
     passwordVisible = true;
+  }
+
+  void goToLogin(){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginWidget()),
+    );
+  }
+
+  void _resetPWD() async{
+    final password = _passwordController.text;
+    final confirm_pwd = _confirmpasswordController.text;
+    if (password != confirm_pwd){
+      errorAlert("Passwords do not match", context);
+    }
+    int statusCode = await resetPWD(widget.email, password.toString());
+    switch(statusCode){
+      case 400:
+        await warningAlert("User does not exist", context);
+      case 407:
+        await warningAlert("Please click on the link that has been sent to your mail", context);
+      case 200:
+        await successAlert("Password has been changed successfully", context);
+        goToLogin();
+    }
   }
 
   @override
@@ -71,7 +100,7 @@ class _PwdResetWidgetState extends State<PwdResetWidget> {
                         padding: EdgeInsets.symmetric(horizontal: _screenWidth*0.035),
                         child: TextFormField(
                           obscureText: passwordVisible,
-                          controller: _confirmpasswordController,
+                          controller: _passwordController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             //helperText:"Password must contain special character",
@@ -156,7 +185,7 @@ class _PwdResetWidgetState extends State<PwdResetWidget> {
                   Container(
                     width: 266,
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: _resetPWD,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
                         padding:

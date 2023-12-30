@@ -20,8 +20,8 @@ router.post("/register", async (req, res)=>{
         "password": hashedPassword,
         "fname": fname,
         "lname": lname,
-        "isVerified": false
-        
+        "isVerified": false,
+        "reqPwdChange": false,
     });
     await user.save();
     if (user) {
@@ -31,8 +31,7 @@ router.post("/register", async (req, res)=>{
             from: process.env.EMAIL,
             to: `${email}`,
             subject: "Account Verification Link",
-            text: `Hello, ${fname} ${lname} Please verify your email by
-                    clicking this link :
+            text: `Hello, ${fname} ${lname} Please verify your email by clicking this link :
                     http://192.168.1.3:3000/api/users/verify-email/${user._id}/${setToken} `,
             })
 

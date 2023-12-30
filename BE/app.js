@@ -16,6 +16,9 @@ const save_test = require("./routes/save.test.route.js");
 const verifyEmail = require("./routes/verify.mail.route.js");
 const resendEmailVerif = require("./routes/resend.verif.js");
 const isVerified = require("./routes/isVerified.js");
+const resetPWDlink = require("./routes/reset.pwd.link.route.js");
+const resetPWD = require("./routes/reset.pwd.route.js");
+const sendMFP = require("./routes/sendMFP.route.js");
 
 
 app.use("/", root);
@@ -27,6 +30,9 @@ app.use("/save_test", save_test);
 app.use('/verify-email/:id/:token', verifyEmail);
 app.use("/resend", resendEmailVerif);
 app.use("/is-verified", isVerified);
+app.use('/api/users/reset-pwd/:id/:token', resetPWDlink);
+app.use("/resetPwd", resetPWD);
+app.use("/sendMFA", sendMFP);
 
 
 app.listen(3000, () => {
