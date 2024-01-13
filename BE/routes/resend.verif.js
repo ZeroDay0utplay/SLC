@@ -18,7 +18,7 @@ router.post("/resend", async (req, res)=>{
                 subject: "Account Verification Link",
                 text: `Hello, ${fname} ${lname} Please verify your email by
                         clicking this link :
-                        http://192.168.1.3:3000/api/users/verify-email/${user._id}/${setToken} `,
+                        http://${process.env.IP}:${process.env.PORT}/api/users/verify-email/${user._id}/${setToken} `,
                 })
 
             } else {

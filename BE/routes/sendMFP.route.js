@@ -14,7 +14,7 @@ router.post("/sendMFP", async (req, res)=>{
             to: `${email}`,
             subject: "Password Reset Link",
             text: `Hello, ${fname} ${lname} Please reset your password by clicking this link :
-            http://192.168.1.3:3000/api/users/reset-pwd/${user._id}/${setToken} `,
+            http://${process.env.IP}/api/users/reset-pwd/${user._id}/${setToken} `,
         });
         return res.status(200).json({message: "Password link has been sent successfully"});
     }

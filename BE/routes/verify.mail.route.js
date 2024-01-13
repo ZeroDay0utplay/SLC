@@ -27,7 +27,7 @@ router.get('/api/users/verify-email/:id/:token', async (req, res) => {
   
 
         } else {
-          const updated = await User.updateOne(
+          const updated = await user.updateOne(
             {isVerified: true}
           );
   

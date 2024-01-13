@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 
 Future<int> resetPWD(String email, String pwd) async {
-  var url = Uri.parse('http://192.168.1.3:3000/resetPwd');
+  var url = Uri.parse('http://${dotenv.get('IP')}:${dotenv.get("PORT")}/resetPwd');
   var headers = <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
   };
