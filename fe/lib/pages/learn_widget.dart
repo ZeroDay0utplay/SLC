@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'learn_colors_widget.dart';
+import 'learn_letters_widget.dart';
 
 class LearnWidget extends StatefulWidget {
   @override
@@ -10,6 +12,20 @@ class _LearnWidgetState extends State<LearnWidget> {
   @override
   void initState() {
     super.initState();
+  }
+
+  void goToLearnColors(){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ColorsLearnWidget()),
+    );
+  }
+
+  void goToLearnLetters(){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LettersLearnWidget()),
+    );
   }
 
   @override
@@ -37,10 +53,10 @@ class _LearnWidgetState extends State<LearnWidget> {
                     ),
                   ),
                   Container(
-                    width: _screenHeight*0.9,
-                    height: _screenHeight*0.4,
+                    width: _screenWidth*0.9,
+                    height: _screenHeight*0.35,
                     child: ElevatedButton(
-                        onPressed: (){},
+                        onPressed: goToLearnColors,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,
                           textStyle: TextStyle(fontSize: 20, fontFamily: 'Kavoon'),
@@ -68,7 +84,7 @@ class _LearnWidgetState extends State<LearnWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.4,
+                height: _screenHeight*0.35,
                 child: ElevatedButton(
                     onPressed: (){},
                     style: ElevatedButton.styleFrom(
@@ -96,9 +112,9 @@ class _LearnWidgetState extends State<LearnWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.45,
+                height: _screenHeight*0.35,
                 child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: goToLearnLetters,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFEEE5E5),
                       textStyle: TextStyle(fontSize: 20, fontFamily: 'Kavoon'),

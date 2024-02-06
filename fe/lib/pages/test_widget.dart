@@ -37,8 +37,8 @@ class _TestWidgetState extends State<TestWidget> {
                       ),
                     ),
                     Container(
-                      width: _screenHeight*0.9,
-                      height: _screenHeight*0.4,
+                      width: _screenWidth*0.9,
+                      height: _screenHeight*0.35,
                       child: ElevatedButton(
                         onPressed: (){},
                         style: ElevatedButton.styleFrom(
@@ -68,7 +68,7 @@ class _TestWidgetState extends State<TestWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                   width: _screenHeight*0.9,
-                  height: _screenHeight*0.4,
+                  height: _screenHeight*0.35,
                   child: ElevatedButton(
                     onPressed: (){},
                     style: ElevatedButton.styleFrom(
@@ -96,7 +96,7 @@ class _TestWidgetState extends State<TestWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                   width: _screenHeight*0.9,
-                  height: _screenHeight*0.45,
+                  height: _screenHeight*0.35,
                   child: ElevatedButton(
                     onPressed: (){},
                     style: ElevatedButton.styleFrom(

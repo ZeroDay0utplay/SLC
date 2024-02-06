@@ -2,6 +2,7 @@ const {User, router} = require("../middleware/exports");
 const jwt = require("jsonwebtoken");
 
 router.get('/api/users/reset-pwd/:id/:token', async (req, res) => {
+  console.log("hello");
     try {
       const token = (req.params.token).toString();
 

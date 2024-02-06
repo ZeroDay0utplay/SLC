@@ -67,6 +67,8 @@ flutter:
     - assets/images/cat_learn.png
     - assets/images/cat_verif.png
     - assets/images/enveloppe.png
+    - assets/images/connectivity.png
+    - assets/images/connectButton.png
     - .env
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -128,6 +130,10 @@ flutter:
       fonts:
         - asset: assets/fonts/Lora.ttf
         - weight: 600
+    - family: Righteous
+      fonts:
+        - asset: assets/fonts/Righteous-Regular.ttf
+        - weight: 400
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

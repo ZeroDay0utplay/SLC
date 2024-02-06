@@ -1,3 +1,4 @@
+import 'package:fe/pages/connectivity_widget.dart';
 import 'package:flutter/material.dart';
 import 'learn_widget.dart';
 import 'test_widget.dart';
@@ -24,6 +25,13 @@ class _HelloWidgetState extends State<HelloWidget> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => TestWidget()),
+    );
+  }
+
+  void goToConnectivity() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ConnectivityWidget()),
     );
   }
 
@@ -54,7 +62,7 @@ class _HelloWidgetState extends State<HelloWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.42,
+                height: _screenHeight*0.35,
                 child: ElevatedButton(
                     onPressed: goToLearn,
                     style: ElevatedButton.styleFrom(
@@ -91,7 +99,7 @@ class _HelloWidgetState extends State<HelloWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.42,
+                height: _screenHeight*0.35,
                 child: ElevatedButton(
                     onPressed: goToTest,
                     style: ElevatedButton.styleFrom(
@@ -129,9 +137,9 @@ class _HelloWidgetState extends State<HelloWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.42,
+                height: _screenHeight*0.35,
                 child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: goToConnectivity,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFEEE5E5),
                       textStyle: TextStyle(fontSize: 20, fontFamily: 'Kavoon'),
