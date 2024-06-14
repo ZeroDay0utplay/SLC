@@ -56,11 +56,11 @@ class _ColorsLearnWidgetState extends State<ColorsLearnWidget>{
               children: [
                 Padding(
                   padding: EdgeInsets.only(right: 0.1*_screenWidth),
-                  child: buildSquare(_screenHeight, _screenWidth, "RED", "Righteous", Colors.red, 60, learnBTN, "colors"),
+                  child: buildSquare(_screenHeight, _screenWidth, "RED", "Righteous", Colors.red, 45, learnBTN, "colors"),
                 ),
                 Padding(
                   padding: EdgeInsets.only(),
-                  child: buildSquare(_screenHeight, _screenWidth, "YELLOW", "Righteous", Colors.yellow, 45, learnBTN, "colors"),
+                  child: buildSquare(_screenHeight, _screenWidth*1.1, "YELLOW", "Righteous", Colors.yellow, 34, learnBTN, "colors"),
                 )
               ],
             ),
@@ -69,11 +69,11 @@ class _ColorsLearnWidgetState extends State<ColorsLearnWidget>{
               children: [
                 Padding(
                   padding: EdgeInsets.only(right: 0.1*_screenWidth),
-                  child: buildSquare(_screenHeight, _screenWidth, "BLUE", "Righteous", Colors.blue, 60, learnBTN, "colors"),
+                  child: buildSquare(_screenHeight, _screenWidth, "BLUE", "Righteous", Colors.blue, 45, learnBTN, "colors"),
                 ),
                 Padding(
                   padding: EdgeInsets.only(),
-                  child: buildSquare(_screenHeight, _screenWidth, "GREEN", "Righteous", Colors.lightGreen, 60, learnBTN, "colors"),
+                  child: buildSquare(_screenHeight, _screenWidth, "GREEN", "Righteous", Colors.lightGreen, 36, learnBTN, "colors"),
                 )
               ],
             ),
@@ -82,17 +82,17 @@ class _ColorsLearnWidgetState extends State<ColorsLearnWidget>{
               children: [
                 Padding(
                   padding: EdgeInsets.only(right: 0.1*_screenWidth),
-                  child: buildSquare(_screenHeight, _screenWidth, "VIOLET", "Righteous", Colors.indigoAccent, 55, learnBTN, "colors"),
+                  child: buildSquare(_screenHeight, _screenWidth, "VIOLET", "Righteous", Colors.indigoAccent, 34, learnBTN, "colors"),
                 ),
                 Padding(
                   padding: EdgeInsets.only(),
-                  child: buildSquare(_screenHeight, _screenWidth, "INDIGO", "Righteous", Colors.indigo, 55, learnBTN, "colors"),
+                  child: buildSquare(_screenHeight, _screenWidth, "INDIGO", "Righteous", Colors.indigo, 34, learnBTN, "colors"),
                 )
               ],
             ),
             Padding(
               padding: EdgeInsets.only(),
-              child: buildSquare(_screenHeight, _screenWidth, "ORANGE", "Righteous", Colors.orange, 47, learnBTN, "colors"),
+              child: buildSquare(_screenHeight, _screenWidth*1.3, "ORANGE", "Righteous", Colors.orange, 40, learnBTN, "colors"),
             )
           ],
         )

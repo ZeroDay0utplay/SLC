@@ -1,7 +1,7 @@
 require("dotenv").config();
 const {mongoose, express, bodyParser} = require("./middleware/exports.js");
 
-mongoose.connect('mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PWD+'@cluster0.7aitjvf.mongodb.net/slc');
+mongoose.connect('mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PWD+'@slc.0k2gjej.mongodb.net/?retryWrites=true&w=majority&appName=SLC');
 
 const app = express();
 

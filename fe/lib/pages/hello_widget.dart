@@ -62,7 +62,7 @@ class _HelloWidgetState extends State<HelloWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.35,
+                height: _screenHeight*0.4,
                 child: ElevatedButton(
                     onPressed: goToLearn,
                     style: ElevatedButton.styleFrom(
@@ -99,7 +99,7 @@ class _HelloWidgetState extends State<HelloWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.35,
+                height: _screenHeight*0.4,
                 child: ElevatedButton(
                     onPressed: goToTest,
                     style: ElevatedButton.styleFrom(
@@ -137,7 +137,7 @@ class _HelloWidgetState extends State<HelloWidget> {
               padding: EdgeInsets.only(left: _screenWidth*0.05),
               child: Container(
                 width: _screenHeight*0.9,
-                height: _screenHeight*0.35,
+                height: _screenHeight*0.4,
                 child: ElevatedButton(
                     onPressed: goToConnectivity,
                     style: ElevatedButton.styleFrom(
